@@ -2,6 +2,8 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     bodyParser  = require('body-parser');
 
+var handler = require('requestHandler');
+
 // initialize express server and implement body parser
 var app = express();
 pp.use(bodyParser.urlencoded({extended: true}));
@@ -19,3 +21,5 @@ db.once('open', function(){
 // set up static server
 app.use(express.static(__dirname + '/../public'));
 
+app.post('/places', handler.savePlace);
+app.get('/places', handler.fetchPlaces);

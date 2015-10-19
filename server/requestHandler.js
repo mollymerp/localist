@@ -40,3 +40,13 @@ exports.savePlace = function(req, res, next) {
       next(error);
     });
 }
+
+exports.fetchPlaces = function (req, res, next){
+  Place.remove({}).find().exec(function(err,places){
+    if (err) {
+      console.error(err);
+    } else {
+      res.send(200,places);
+    }
+  });
+};
