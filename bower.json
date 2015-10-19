@@ -1,0 +1,17 @@
+{
+  "name": "localist",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "Molly Lloyd",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies":{
+    "jquery":"~2.1.4"
+  }
+
+}

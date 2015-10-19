@@ -1,0 +1,13 @@
+{
+  "name": "localist",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "Molly Lloyd",
+  "license": "MIT",
+
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.1.0"
+  }
+}
