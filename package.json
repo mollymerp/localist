@@ -5,9 +5,9 @@
   "main": "app.js",
   "author": "Molly Lloyd",
   "license": "MIT",
-
   "dependencies": {
     "express": "^4.13.3",
-    "mongoose": "^4.1.0"
+    "mongoose": "^4.1.0",
+    "q": "^1.4.1"
   }
 }

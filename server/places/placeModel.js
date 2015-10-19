@@ -2,12 +2,12 @@ var mongoose = require('mongoose');
 
 
 
-var Geo = new mongoose.Schema({
+var GeoSchema = new mongoose.Schema({
   type: {type: String, default: "Point"},
   coordinates: [{type: Number}]
 });
 
-var Props = new mongoose.Schema({
+var PropSchema = new mongoose.Schema({
   name: {type: String, required: true},
   address: String,
   phone: String,
@@ -17,10 +17,14 @@ var Props = new mongoose.Schema({
 
 var PlaceSchema = new mongoose.Schema({
   type: { type: String, default: "Feature" },
-  geometry: [Geo],
-  properties: [Props]
+  geometry: [GeoSchema],
+  properties: [PropsSchema]
 })
 
 
-module.exports = mongoose.model('places', PlaceSchema);
+module.exports = {
+  Place: mongoose.model('places', PlaceSchema),
+  Geom: mongoose.model('geoms', GeoSchema),
+  Prop: mongoose.model('props', PropSchema)
+}
 
