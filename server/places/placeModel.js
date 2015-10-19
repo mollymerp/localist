@@ -18,7 +18,7 @@ var PropSchema = new mongoose.Schema({
 var PlaceSchema = new mongoose.Schema({
   type: { type: String, default: "Feature" },
   geometry: [GeoSchema],
-  properties: [PropsSchema]
+  properties: [PropSchema]
 })
 
 

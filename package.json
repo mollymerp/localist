@@ -6,7 +6,9 @@
   "author": "Molly Lloyd",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "express-partials": "^0.3.0",
     "mongoose": "^4.1.0",
     "q": "^1.4.1"
   }

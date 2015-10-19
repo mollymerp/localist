@@ -2,11 +2,11 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     bodyParser  = require('body-parser');
 
-var handler = require('requestHandler');
+var handler = require('./requestHandler');
 
 // initialize express server and implement body parser
 var app = express();
-pp.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 

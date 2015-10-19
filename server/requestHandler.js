@@ -1,6 +1,5 @@
-var request = require('request'),
-Q = require('q'),
-schema = require('places/placeModel');
+var Q = require('q'),
+schema = require('./places/placeModel');
 
 // import nested schema
 Place = schema.Place;
@@ -19,15 +18,15 @@ exports.savePlace = function(req, res, next) {
       } else {
         var newPlace = new Place();
         if (req.body.lat && req.body.lon){
-          newPlace.geometry.push({coordinates: [req.body.lat,req.body.lon]);
+          newPlace.geometry.push({coordinates: [req.body.lat,req.body.lon]});
         }
-        newPlace.properties.push{
-          name: req.body.name,
-          address: req.body.address,
-          phone: req.body.phone,
-          tips: req.body.tips,
-          typeTags = req.body.tags
-        };
+        newPlace.properties.push({
+                  name: req.body.name,
+                  address: req.body.address,
+                  phone: req.body.phone,
+                  tips: req.body.tips,
+                  typeTags: req.body.tags
+                });
         return createPlace(newPlace);
       }
     })
