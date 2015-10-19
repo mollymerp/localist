@@ -1,4 +1,4 @@
-# Project Name #
+# Localist #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,20 +16,20 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## A recommendation engine for your favorite local destinations ##
 
-## Sub-Heading ##
+### Allow friends and family to explore your city through an interactive map interface ###
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
-## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+### Summary ###
+Having lived in many different cities, I often get requests for recommendations from people travelling to those places. This tool will allow me to curate and update a list of my favorite spots in cities in which I live / have lived. 
 
-## Problem ##
-  > Describe the problem your product solves.
+Localist will allow friends and family to explore a new city from the perspective of a local. 
 
-## Solution ##
-  > Describe how your product elegantly solves the problem.
+## Problem / Solution ##
+Visitors often resort to huge recommendation companies such as TripAdvisor and Yelp when deciding what to do on a trip. It is often hard to sift through the vast amount of information and ensure they get the most out of their limited time in a city. 
+
+Localist allows people who have local experience in a city to create an interactive map for friends and family to reference when planning a trip. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
