@@ -6,15 +6,43 @@
   <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet'/>
   <link href="styles/styles.css" rel='stylesheet'/>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
   <div class="container">
     <div id = "dc-map" class = "map"></div>
     <div class="add-place">
-      <h2>Add a location</h1>
-      <form>
-        
-      </form>
+     <form class="pure-form pure-form-aligned">
+         <fieldset>
+             <div class="pure-control-group">
+                 <label for="name">Place Name</label>
+                 <input id="name" type="text" placeholder="Place Name">
+             </div>
+
+             <div class="pure-control-group">
+                 <label for="address">Address</label>
+                 <input id="address" type="address" placeholder="Address">
+             </div>
+
+             <div class="pure-control-group">
+                 <label for="coords">Coordinates</label>
+                 <input id="coords" type="coords" placeholder="Click map to populate coordinates">
+             </div>
+
+             <div class="pure-control-group">
+                 <label for="foo">Supercalifragilistic Label</label>
+                 <input id="foo" type="text" placeholder="Enter something here...">
+             </div>
+
+             <div class="pure-controls">
+                 <label for="cb" class="pure-checkbox">
+                     <input id="cb" type="checkbox"> I've read the terms and conditions
+                 </label>
+
+                 <button type="submit" class="pure-button pure-button-primary">Submit</button>
+             </div>
+         </fieldset>
+     </form>
     </div>
   </div>
 

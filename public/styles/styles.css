@@ -1,6 +1,6 @@
 body {
-  font:500 20px/26px 'Helvetica Neue', Helvetica, Arial, Sans-serif;
-  width: 80%;
+  /*font:500 20px/26px 'Helvetica Neue', Helvetica, Arial, Sans-serif;*/
+  width: 95%;
   height:800px;
   margin: auto;
   -webkit-font-smoothing:antialiased;
@@ -24,5 +24,6 @@ body {
 
 .add-place {
   position: absolute; 
+  left:20px;
   width: 33.33%;
 }
