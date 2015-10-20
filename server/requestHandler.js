@@ -14,10 +14,9 @@ exports.savePlace = function(req, res, next) {
   var findPlace = Q.nbind(Place.findOne, Place);
   //this deletes all current records -- comment out when you want to persist!
   Place.find({}).remove().exec();
+ 
 
-
-  Place.find({"properties.name": req.body.name})
-
+  Place.find({name: req.body.name})
     .exec(function(err,match){
       if (err) {
         console.log('Error reading URL heading: ', err);
@@ -44,6 +43,9 @@ exports.savePlace = function(req, res, next) {
         newPlace.save(function (err) {
           if (err){
             console.log("error on save place");
+          }
+          else {
+            console.log("document saved!");
           }
         });
         res.json(newPlace);
