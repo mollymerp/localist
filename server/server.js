@@ -21,5 +21,9 @@ db.once('open', function(){
 // set up static server
 app.use(express.static(__dirname + '/../public'));
 
+
 app.post('/places', handler.savePlace);
 app.get('/places', handler.fetchPlaces);
+
+console.log('express listening on 8080');
+app.listen(8080);

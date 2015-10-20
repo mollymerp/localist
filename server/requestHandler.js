@@ -8,18 +8,29 @@ Properties =schema.Prop;
 
 // create function to add a new place to the db
 exports.savePlace = function(req, res, next) {
-  var createPlace = Q.bind(Place.create, Place);
+  console.log('request recieved');
+  console.log('req.body', req.body);
+  var createPlace = Q.bind(Place.save, Place);
   var findPlace = Q.nbind(Place.findOne, Place);
+  console.log('req.body.name', req.body.name);
+  // findPlace({"properties.name": req.body.name})
+  Place.find({"properties.name": req.body.name})
 
-  findPlace({name: req.body.name})
-    .then(function(match){
-      if (match){
-        res.send(match)
+    .exec(function(err,match){
+      if (err) {
+        console.log('Error reading URL heading: ', err);
+        return res.send(404);
+      }
+
+      if (match.length){
+        console.log('found match');
+        res.send(match[0])
       } else {
         var newPlace = new Place();
         if (req.body.lat && req.body.lon){
           newPlace.geometry.push({coordinates: [req.body.lat,req.body.lon]});
         }
+        // newPlace.geometry.push({coordinates: req.body.coordinates});
         newPlace.properties.push({
                   name: req.body.name,
                   address: req.body.address,
@@ -27,25 +38,26 @@ exports.savePlace = function(req, res, next) {
                   tips: req.body.tips,
                   typeTags: req.body.tags
                 });
-        return createPlace(newPlace);
+        newPlace.save(function (err) {
+          if (err){
+            console.log("error on save place");
+          }
+        });
+        res.json(newPlace);
       }
-    })
-    .then(function (createdPlace){
-      if (createdPlace){
-        res.json(createdPlace);
-      }
-    })
-    .fail(function (error){
-      next(error);
     });
 }
 
+var fetchAllPlaces = Q.bind(Place.find, Place);
+
 exports.fetchPlaces = function (req, res, next){
-  Place.remove({}).find().exec(function(err,places){
-    if (err) {
+  console.log('in database');
+  Place.find({}).exec(function(err, places){
+    if (err){
       console.error(err);
-    } else {
-      res.send(200,places);
+      res.send(404);
     }
+    console.log('places in db', places)
+    res.send(places);
   });
 };

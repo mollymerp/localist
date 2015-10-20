@@ -10,8 +10,10 @@
     "node_modules",
     "bower_components"
   ],
-  "dependencies":{
-    "jquery":"~2.1.4"
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-mocks": "~1.4.7"
   }
-
 }
