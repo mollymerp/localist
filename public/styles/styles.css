@@ -27,3 +27,11 @@ body {
   left:20px;
   width: 33.33%;
 }
+
+.leaflet-popup-content {
+  line-height: 0px;
+};
+
+/*.tt-title {
+  font-weight: bold;
+};*/

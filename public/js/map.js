@@ -13,38 +13,51 @@ $(function() {
       $('form').find('input[name = "coords"]').val(latlngArr);
     });
 
+  function formatTooltip (layer) {
+    var props = layer.feature.properties;
+    var content = '<p class = "tt-title">' + props.name +' <\/p><br\/>' +
+                  '<p class = "tt-address">' + props.address + '<\/p><br\/>'+
+                  '<p class ="tt-tips"> Tips: <br \/>'+ props.tips +'<\/p>';
+    layer.bindPopup(content);
+  }
 
-
+  function clearPlaces () {
+    map.removeLayer(markers);
+  }
+  var places = {};
   function getPlaces (){
-    var places = {};
+    
     var geoJSON = {type: "FeatureCollection", "features": []};
 
     $.ajax({
       url: '/places',
       method:'GET'
     }).done(function(res) {
+      toAdd =[]
       for (var place in res) {
         if (!(res[place]._id in places)){
+          toAdd.push(res[place])
           places[res[place]._id] = res[place];
         }
       }
 
-      res.forEach(function (place){
+      toAdd.forEach(function (place){
         var newFeature = {"type":"Feature",
                           "geometry": {"type":"Point", "coordinates": [] }
                         };
         newFeature.geometry.coordinates = place.coordinates;
-        newFeature.properties = {name: place.name, address: place.address, tips: place.tips, tags: place.tags};
+        newFeature.properties = {name: place.name, address: place.address, tips: place.tips, tags: place.tags, 'marker-color': "#519CFF"};
         geoJSON.features.push(newFeature);
       })
-      console.log('geoJson', geoJSON);
-
       var markers = L.mapbox.featureLayer().addTo(map);
       markers.setGeoJSON(geoJSON); 
+      markers.eachLayer(formatTooltip);
+
     });
   }
+  //initialize the places already on the map
   getPlaces();
-
+  setInterval(getPlaces, 3000);
 
 
   function processForm() {
@@ -84,8 +97,6 @@ $(function() {
       data: JSON.stringify(newPlace),
       contentType: 'application/json'
     }).done(function (res){
-      console.log('new place added to database, all places fetched from server');
-      console.log('response', res);
       getPlaces();
     })
     
