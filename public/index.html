@@ -14,14 +14,14 @@
     <div class="add-place">
     <form id = 'add-place-form' class="pure-form">
       <fieldset class="pure-group">
-        <input type="text" class="pure-input-2-3" name - "name" placeholder="Place Name" required>
+        <input type="text" class="pure-input-2-3" name = "name" placeholder="Place Name" required>
         <input type="text" class="pure-input-2-3" name = "address" placeholder="Address">
         <input type="text" class="pure-input-2-3" name = "coords" placeholder="Click map to populate location coordinates" required>
       </fieldset>
 
       <fieldset class="pure-group">
-        <input type="text" class="pure-input-2-3" placeholder="Recommended by: ">
-        <textarea class="pure-input-2-3" placeholder="Share your insider tips!"></textarea>
+        <input type="text" class="pure-input-2-3" name="recommender" placeholder="Recommended by: ">
+        <textarea class="pure-input-2-3" name="tips" placeholder="Share your insider tips!"></textarea>
       </fieldset>
         <h3>Place type: </h3>
         <label for= "option-one" class = "pure-checkbox">
@@ -43,6 +43,8 @@
     </form>
     </div>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+
     <script src = "js/map.js"></script>
   </div>
 

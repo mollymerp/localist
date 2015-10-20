@@ -20,4 +20,4 @@
     "name":"The White House",
     "address":"1600 Pennsylvania Ave.",
     "tips": "Take a nice walk and enjoy the sights!",
-    "typeTags": ["US Government", "monument"]}
+    "tags": ["US Government", "monument"]}
