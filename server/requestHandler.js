@@ -3,17 +3,19 @@ schema = require('./places/placeModel');
 
 // import nested schema
 Place = schema.Place;
-Geom = schema.Geom;
-Properties =schema.Prop; 
+// Geom = schema.Geom;
+// Properties =schema.Prop; 
 
 // create function to add a new place to the db
 exports.savePlace = function(req, res, next) {
   console.log('request recieved');
-  console.log('req.body', req.body);
+  console.log('req.body', req.body.typeTags);
   var createPlace = Q.bind(Place.save, Place);
   var findPlace = Q.nbind(Place.findOne, Place);
-  console.log('req.body.name', req.body.name);
-  // findPlace({"properties.name": req.body.name})
+  //this deletes all current records -- comment out when you want to persist!
+  Place.find({}).remove().exec();
+
+
   Place.find({"properties.name": req.body.name})
 
     .exec(function(err,match){
@@ -26,18 +28,19 @@ exports.savePlace = function(req, res, next) {
         console.log('found match');
         res.send(match[0])
       } else {
-        var newPlace = new Place();
-        if (req.body.lat && req.body.lon){
-          newPlace.geometry.push({coordinates: [req.body.lat,req.body.lon]});
-        }
-        // newPlace.geometry.push({coordinates: req.body.coordinates});
-        newPlace.properties.push({
+        var newPlace = new Place({
                   name: req.body.name,
                   address: req.body.address,
                   phone: req.body.phone,
                   tips: req.body.tips,
-                  typeTags: req.body.tags
+                  tags:[],
+                  coordinates: [req.body.lat,req.body.lon]
                 });
+
+        req.body.typeTags.forEach(function (tag){
+          newPlace.tags.push(tag);
+        });
+
         newPlace.save(function (err) {
           if (err){
             console.log("error on save place");
