@@ -13,7 +13,7 @@ exports.savePlace = function(req, res, next) {
   var createPlace = Q.bind(Place.save, Place);
   var findPlace = Q.nbind(Place.findOne, Place);
   //this deletes all current records -- comment out when you want to persist!
-  // Place.find({}).remove().exec();
+  Place.find({}).remove().exec();
   
 
   Place.find({name: req.body.name})
@@ -33,7 +33,7 @@ exports.savePlace = function(req, res, next) {
                   phone: req.body.phone,
                   tips: req.body.tips,
                   tags:[],
-                  coordinates: [req.body.lat,req.body.lon]
+                  coordinates: [Number(req.body.lon),Number(req.body.lat)]
                 });
 
         req.body.typeTags.forEach(function (tag){
