@@ -1,17 +1,21 @@
 
-// L.mapbox.accessToken = 'pk.eyJ1IjoibWxsb3lkIiwiYSI6Im9nMDN3aW8ifQ.mwiVAv4E-1OeaoR25QZAvw';
-// var map = L.mapbox.map('dc-map','mlloyd.noehc1pf', {
-//   scrollWheelZoom: false,
-//   minZoom: 12
-// }).setView([38.898, -77.046], 12);
+L.mapbox.accessToken = 'pk.eyJ1IjoibWxsb3lkIiwiYSI6Im9nMDN3aW8ifQ.mwiVAv4E-1OeaoR25QZAvw';
+var map = L.mapbox.map('dc-map','mlloyd.noehc1pf', {
+  scrollWheelZoom: false,
+  minZoom: 12
+}).setView([38.898, -77.046], 12);
 
-// map.on('click', function(e) {
-//     console.log(e.latlng);
-// });
+map.on('click', function(e) {
+    console.log(e.latlng);
+});
 
 var geodata;
+angular.module('angular-mapbox').directive('marker', function($compile, $timeout, $parse, mapboxService) {
+  mapboxService.init({ accessToken: 'pk.eyJ1IjoibWxsb3lkIiwiYSI6Im9nMDN3aW8ifQ.mwiVAv4E-1OeaoR25QZAvw' });
+});
 
-angular.module('localist',[])
+
+angular.module('localist',['angular-mapbox'])
 .factory('Places', function ($http){
 
   var getPlaces = function (){
@@ -45,13 +49,6 @@ angular.module('localist',[])
   $scope.data.geoJSON = {type: "FeatureCollection", "features": []};
   $scope.getPlaces = function (){
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoibWxsb3lkIiwiYSI6Im9nMDN3aW8ifQ.mwiVAv4E-1OeaoR25QZAvw';
-    var map = L.mapbox.map('dc-map','mlloyd.noehc1pf', {
-      scrollWheelZoom: false,
-      minZoom: 12
-    }).setView([38.898, -77.046], 12);
-
-
     Places.getPlaces().then(function (res){
       $scope.data.places = res;
       console.log(res);
@@ -74,23 +71,19 @@ angular.module('localist',[])
     // markers.setGeoJSON($scope.data.geoJSON); 
     // console.log(markers);
 
-    var markerLayer = L.mapbox.featureLayer($scope.data.geoJSON).addTo(map);
+    var markerLayer = L.mapbox.featureLayer($scope.data.geoJSON, {
+      pointToLayer: function (feature, latlon) {
+        return L.circleMarker(latlon, {
+              fillColor: '#ff0000',
+              fillOpacity: 0.8,
+              stroke: false
+            });
+      }
+    }).addTo(map);
+
   }
 
   $scope.getPlaces();
-
-  
-
-
-
 });
 
-  // var markerLayer = L.mapbox.featureLayer($scope.data.geoJSON, {
-  //   pointToLayer: function (feature, latlon) {
-  //     return L.circleMarker(latlon, {
-  //           fillColor: '#ff0000',
-  //           fillOpacity: 0.8,
-  //           stroke: false
-  //         });
-  //   }
-  // }).addTo(map);
+

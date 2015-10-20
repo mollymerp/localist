@@ -5,6 +5,7 @@
   "main": "app.js",
   "author": "Molly Lloyd",
   "license": "MIT",
+  "directory": "public/bower_components",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -14,6 +15,7 @@
     "jquery": "~2.1.4",
     "angular": "~1.4.7",
     "angular-route": "~1.4.7",
-    "angular-mocks": "~1.4.7"
+    "angular-mocks": "~1.4.7",
+    "angular-mapbox": "~0.1.5"
   }
 }
