@@ -9,17 +9,11 @@
 </head>
 <body>
   <div class="container">
-    <div ng-app="localist" ng-controller="localistController" ng-init="getPlaces()">
-      <div id = "dc-map" class = "map">
-<!--         <mapbox map-id="mlloyd.noehc1pf" lat="38.898" lng="-77.046" zoom="12">
-          <div ng-repeat="place in data.places">
-            <marker lat="place.coordinates[0]" lng="place.coordinates[1]" symbol="marker-stroked"></marker>
-
-          </div>
-        </mapbox> -->
-      </div>
-      
+    <div id = "dc-map" class = "map"></div>
+    <div class="location-list">
+      <h1>Localist</h1>
     </div>
+  </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src = "js/map.js"></script>
