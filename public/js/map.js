@@ -8,10 +8,28 @@ $(function() {
   }).setView([38.898, -77.046], 10);
 
   // add coordinates to form
-    map.on('click', function (e){
-      var latlngArr =[e.latlng["lat"], e.latlng["lng"]];
-      $('form').find('input[name = "coords"]').val(latlngArr);
+  var tempMarker;
+  map.on('click', function (e){
+    if (tempMarker !==undefined) {
+      map.removeLayer(tempMarker);
+    }
+
+    var latlngArr =[e.latlng["lat"].toFixed(4), e.latlng["lng"].toFixed(4)];
+    $('form').find('input[name = "coords"]').val(latlngArr);
+
+    tempMarker = L.mapbox.featureLayer({"type": "Feature",
+      "geometry": {
+      "type": "Point",
+      "coordinates": [latlngArr[1], latlngArr[0]],
+      "marker-color":"#5644FF"
+       }}).addTo(map);
+  });
+
+  if (tempMarker !== undefined) {
+    tempMarker.on('click', function (e) {
+      map.removeLayer(tempMarker);
     });
+  }
 
   function formatTooltip (layer) {
     var props = layer.feature.properties;
@@ -21,9 +39,6 @@ $(function() {
     layer.bindPopup(content);
   }
 
-  function clearPlaces () {
-    map.removeLayer(markers);
-  }
   var places = {};
   function getPlaces (){
     
@@ -45,8 +60,9 @@ $(function() {
         var newFeature = {"type":"Feature",
                           "geometry": {"type":"Point", "coordinates": [] }
                         };
+        var markerSym = place.tags[0] === 'restaurant' ? 'restaurant' : 'monument'
         newFeature.geometry.coordinates = place.coordinates;
-        newFeature.properties = {name: place.name, address: place.address, tips: place.tips, tags: place.tags, 'marker-color': "#519CFF"};
+        newFeature.properties = {name: place.name, address: place.address, tips: place.tips, tags: place.tags, 'marker-color': "#519CFF", "marker-symbol": markerSym};
         geoJSON.features.push(newFeature);
       })
       var markers = L.mapbox.featureLayer().addTo(map);
@@ -75,15 +91,23 @@ $(function() {
       }
     });
 
-    newPlace["tips"] = $('textarea').prop('value');
+   newPlace["tips"] = $('textarea').prop('value');
 
+    var tags = [];
     $('input[type = checkbox]').each(function (index, el){
-      var tags = [];
+      
+      // console.log('checked, value', $(el).prop('checked'), $(el).prop('value'))
       if ($(el).prop('checked')){
-        tags.push($(el).prop('value'));
+        tags.push($(el).prop('value').toLowerCase());
+        // $(el).prop('checked') = false;
       }
-      newPlace["tags"] = tags;
     })
+    console.log('tags', tags);
+    newPlace["tags"] = tags;
+
+    // $('form').find('input[type = "text"], textarea').val("");
+    $('form')[0].reset();
+
     return newPlace;
   };
 

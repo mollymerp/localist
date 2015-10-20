@@ -12,35 +12,42 @@
   <div class="container">
     <div id = "dc-map" class = "map"></div>
     <div class="add-place">
-    <form id = 'add-place-form' class="pure-form">
-      <fieldset class="pure-group">
-        <input type="text" class="pure-input-2-3" name = "name" placeholder="Place Name" required>
-        <input type="text" class="pure-input-2-3" name = "address" placeholder="Address">
-        <input type="text" class="pure-input-2-3" name = "coords" placeholder="Click map to populate coordinates" required>
-      </fieldset>
+      <h2>Add a location to the map!</h2>
+      <form id = 'add-place-form' class="pure-form">
+        <fieldset class="pure-group">
+          <input type="text" class="pure-input-2-3" name = "name" placeholder="Place Name" required>
+          <input type="text" class="pure-input-2-3" name = "address" placeholder="Address">
+          <input type="text" class="pure-input-2-3" name = "coords" placeholder="Click map to get coordinates" required>
+        </fieldset>
 
-      <fieldset class="pure-group">
-        <input type="text" class="pure-input-2-3" name="recommender" placeholder="Recommended by: ">
-        <textarea class="pure-input-2-3" name="tips" placeholder="Share your insider tips!"></textarea>
-      </fieldset>
-        <h3>Place type: </h3>
-        <label for= "option-one" class = "pure-checkbox">
-          <input id ="option-one" type="checkbox" value="Restaurant"> Restaurant
-        </label>
-        <label for= "option-two" class = "pure-checkbox">
-          <input id ="option-two" type="checkbox" value="Museum"> Museum
-        </label>
-        <label for= "option-three" class = "pure-checkbox">
-          <input id ="option-three" type="checkbox" value="Market"> Market
-        </label>
-        <label for= "option-four" class = "pure-checkbox">
-          <input id ="option-four" type="checkbox" value="Nightlife"> Nightlife
-        </label>
-        <label for= "option-five" class = "pure-checkbox">
-          <input id ="option-five" type="checkbox" value="Other"> Other
-        </label>
-      <button type="submit" class="pure-button pure-input-2-3 pure-button-primary">Send to map!</button>
-    </form>
+        <fieldset class="pure-group">
+          <input type="text" class="pure-input-2-3" name="recommender" placeholder="Recommended by: ">
+          <textarea class="pure-input-2-3" name="tips" placeholder="Share your insider tips!"></textarea>
+        </fieldset>
+          <h3>Place type: </h3>
+          <label for= "option-one" class = "pure-checkbox">
+            <input id ="option-one" type="checkbox" value="Restaurant"> Restaurant
+          </label>
+          <label for= "option-two" class = "pure-checkbox">
+            <input id ="option-two" type="checkbox" value="Museum"> Museum
+          </label>
+          <label for= "option-three" class = "pure-checkbox">
+            <input id ="option-three" type="checkbox" value="Market"> Park
+          </label>
+          <label for= "option-four" class = "pure-checkbox">
+            <input id ="option-four" type="checkbox" value="Nightlife"> Bar
+          </label>
+          <label for= "option-five" class = "pure-checkbox">
+            <input id ="option-five" type="checkbox" value="Other"> Other
+          </label>
+        <button type="submit" class="pure-button pure-input-2-3 pure-button-primary">Send to map!</button>
+      </form>
+    </div>
+    <div class="sidebar">
+      <div class="heading">
+        <h2>Favorite spots in DC</h2>
+      </div>
+      <div id ="listings" class="listings"></div>
     </div>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
