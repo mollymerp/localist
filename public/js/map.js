@@ -2,10 +2,10 @@
 var app;
 $(function() {
   L.mapbox.accessToken = 'pk.eyJ1IjoibWxsb3lkIiwiYSI6Im9nMDN3aW8ifQ.mwiVAv4E-1OeaoR25QZAvw';
-  var map = L.mapbox.map('dc-map','mlloyd.noehc1pf', {
-    scrollWheelZoom: false,
+  var map = L.mapbox.map('dc-map','mapbox.emerald', {
+    // scrollWheelZoom: false,
     minZoom: 12
-  }).setView([38.898, -77.046], 10);
+  }).setView([38.903, -77.038], 12);
 
   // add coordinates to form
   var tempMarker;
@@ -37,13 +37,12 @@ $(function() {
     var props = layer.feature.properties;
     var content = '<p class = "tt-title">' + props.name +' <\/p><br\/>' +
                   '<p class = "tt-address">' + props.address + '<\/p><br\/>'+
-                  '<p class ="tt-tips"> Tips: <br \/>'+ props.tips +'<\/p>';
+                  '<p class ="tt-tips">'+ props.tips +'<\/p>';
     layer.bindPopup(content);
   }
 
   var places = {};
   function getPlaces (){
-    
     var geoJSON = {type: "FeatureCollection", "features": []};
 
     $.ajax({
@@ -95,9 +94,7 @@ $(function() {
           map.setView(locale.getLatLng(), 15);
           locale.openPopup();
         })
-
       })
-
     });
   }
   //initialize the places already on the map

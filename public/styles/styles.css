@@ -17,24 +17,31 @@ body {
 .list-p {
   height: 10px;
 }
+.tt-title{
+  display:block;
+  color:#283B96;
+  font-weight:700;
+}
 .map { 
   position: absolute; 
   top:5px; 
   bottom:20px; 
   left: 33.333%;
-  width:33.33%; 
+  width:45%; 
 }
 
 .add-place {
   position: absolute; 
-  left:70%;
-  width: 30%;
+  left:80%;
+  width: 20%;
 }
 
 .sidebar {
   position: absolute;
   left: 20px;
   width: 30%;
+  height:500px;
+  overflow-y:scroll;
 }
 .heading {
   background:#fff;
@@ -50,7 +57,7 @@ h2 {
 }
 .listings {
   height:100%;
-  overflow:auto;
+
   padding-bottom:60px;
 }
 
