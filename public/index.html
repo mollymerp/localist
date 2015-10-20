@@ -12,43 +12,39 @@
   <div class="container">
     <div id = "dc-map" class = "map"></div>
     <div class="add-place">
-     <form class="pure-form pure-form-aligned">
-         <fieldset>
-             <div class="pure-control-group">
-                 <label for="name">Place Name</label>
-                 <input id="name" type="text" placeholder="Place Name">
-             </div>
+    <form id = 'add-place-form' class="pure-form">
+      <fieldset class="pure-group">
+        <input type="text" class="pure-input-2-3" name - "name" placeholder="Place Name" required>
+        <input type="text" class="pure-input-2-3" name = "address" placeholder="Address">
+        <input type="text" class="pure-input-2-3" name = "coords" placeholder="Click map to populate location coordinates" required>
+      </fieldset>
 
-             <div class="pure-control-group">
-                 <label for="password">Address</label>
-                 <input id="password" type="password" placeholder="Address">
-             </div>
-
-             <div class="pure-control-group">
-                 <label for="coords">Coordinates</label>
-                 <input id="coords" type="text" placeholder="Click the map to populate coordinates">
-             </div>
-
-             <div class="pure-control-group">
-                 <label for="foo">Details</label>
-                 <input id="foo" type="text" placeholder="Enter something tips about this location here...">
-             </div>
-
-             <div class="pure-controls">
-                 <label for="cb" class="pure-checkbox">
-                     <input id="cb" type="checkbox"> I've read the terms and conditions
-                 </label>
-
-                 <button type="submit" class="pure-button pure-button-primary">Submit</button>
-             </div>
-         </fieldset>
-     </form>
+      <fieldset class="pure-group">
+        <input type="text" class="pure-input-2-3" placeholder="Recommended by: ">
+        <textarea class="pure-input-2-3" placeholder="Share your insider tips!"></textarea>
+      </fieldset>
+        <h3>Place type: </h3>
+        <label for= "option-one" class = "pure-checkbox">
+          <input id ="option-one" type="checkbox" value="Restaurant"> Restaurant
+        </label>
+        <label for= "option-two" class = "pure-checkbox">
+          <input id ="option-two" type="checkbox" value="Museum"> Museum
+        </label>
+        <label for= "option-three" class = "pure-checkbox">
+          <input id ="option-three" type="checkbox" value="Market"> Market
+        </label>
+        <label for= "option-four" class = "pure-checkbox">
+          <input id ="option-four" type="checkbox" value="Nightlife"> Nightlife
+        </label>
+        <label for= "option-five" class = "pure-checkbox">
+          <input id ="option-five" type="checkbox" value="Other"> Other
+        </label>
+      <button type="submit" class="pure-button pure-input-2-3 pure-button-primary">Send to map!</button>
+    </form>
     </div>
-  </div>
-
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src = "js/map.js"></script>
-
   </div>
+
 </body>
 </html>

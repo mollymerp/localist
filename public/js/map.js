@@ -7,9 +7,6 @@ $(function() {
     minZoom: 12
   }).setView([38.898, -77.046], 12);
 
-  map.on('click', function(e) {
-      console.log(e.latlng);
-  });
 
   var places = {};
   var geoJSON = {type: "FeatureCollection", "features": []};
@@ -38,8 +35,19 @@ $(function() {
     markers.setGeoJSON(geoJSON); 
   });
 
-  function getClickCoords() {
-    
-  }
+// add coordinates to form
+  map.on('click', function (e){
+    var latlngArr =[e.latlng["lat"], e.latlng["lng"]];
+    $('form').find('input[name = "coords"]').val(latlngArr);
+  });
+
+  $('form').submit(function (e){
+    e.preventDefault();
+    // $('input').forEach(function (e){
+    //   console.log('event, value: ', e, e.val());
+    // })
+    console.log($('input'))
+  });
+
 
 }());
