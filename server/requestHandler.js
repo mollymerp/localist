@@ -9,7 +9,7 @@ Place = schema.Place;
 // create function to add a new place to the db
 exports.savePlace = function(req, res, next) {
   console.log('request recieved');
-  console.log('req.body', req.body.typeTags);
+  console.log('req.body', req.body);
   var createPlace = Q.bind(Place.save, Place);
   var findPlace = Q.nbind(Place.findOne, Place);
   //this deletes all current records -- comment out when you want to persist!

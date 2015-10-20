@@ -13,9 +13,12 @@ $(function() {
       $('form').find('input[name = "coords"]').val(latlngArr);
     });
 
-  var places = {};
-  var geoJSON = {type: "FeatureCollection", "features": []};
+
+
   function getPlaces (){
+    var places = {};
+    var geoJSON = {type: "FeatureCollection", "features": []};
+
     $.ajax({
       url: '/places',
       method:'GET'
@@ -40,7 +43,7 @@ $(function() {
       markers.setGeoJSON(geoJSON); 
     });
   }
-  
+  getPlaces();
 
 
 
@@ -77,12 +80,15 @@ $(function() {
     var newPlace = processForm();
     $.ajax({
       url: '/places',
-      method: 'POST',
-      data: newPlace
+      type: 'POST',
+      data: JSON.stringify(newPlace),
+      contentType: 'application/json'
     }).done(function (res){
-      
+      console.log('new place added to database, all places fetched from server');
+      console.log('response', res);
+      getPlaces();
     })
-    console.log(newPlace)
+    
   });
 
 
