@@ -23,13 +23,15 @@ $(function() {
       "coordinates": [latlngArr[1], latlngArr[0]],
       "marker-color":"#5644FF"
        }}).addTo(map);
+    console.log("temp marker", tempMarker);
+
   });
 
-  if (tempMarker !== undefined) {
-    tempMarker.on('click', function (e) {
-      map.removeLayer(tempMarker);
-    });
-  }
+  // if (tempMarker !== undefined) {
+  //   tempMarker.on('click', function (e) {
+  //     map.removeLayer(tempMarker);
+  //   });
+  // }
 
   function formatTooltip (layer) {
     var props = layer.feature.properties;
@@ -68,6 +70,33 @@ $(function() {
       var markers = L.mapbox.featureLayer().addTo(map);
       markers.setGeoJSON(geoJSON); 
       markers.eachLayer(formatTooltip);
+
+      //populate list at the side
+      var $listings = $('.listings');
+
+      markers.eachLayer(function (locale){
+        // console.log(locale);
+        var prop = locale.feature.properties;
+
+        var $el = $('<div class="item" />'); 
+        var $link = $('<a href="#" class="title" />');
+        var $tips = $('<div class="list-tips"/>');
+        var $p = $('<p class="list-p" />')
+
+        $listings.append($el);
+        $el.append($link)
+        $link.html(prop.name);
+
+        var tips = $el.append($tips);
+        tips.append($p);
+        $p.html(prop.tips);
+
+        $link.on('click', function(){
+          map.setView(locale.getLatLng(), 15);
+          locale.openPopup();
+        })
+
+      })
 
     });
   }
@@ -121,7 +150,7 @@ $(function() {
       data: JSON.stringify(newPlace),
       contentType: 'application/json'
     }).done(function (res){
-      getPlaces();
+      console.log('data sent to server');
     })
     
   });

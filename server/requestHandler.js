@@ -62,7 +62,7 @@ exports.fetchPlaces = function (req, res, next){
       console.error(err);
       res.send(404);
     }
-    console.log('places in db', places)
+    // console.log('places in db', places)
     res.send(places);
   });
 };
