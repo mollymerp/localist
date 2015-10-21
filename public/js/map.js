@@ -23,7 +23,6 @@ $(function() {
       "coordinates": [latlngArr[1], latlngArr[0]],
       "marker-color":"#5644FF"
        }}).addTo(map);
-    console.log("temp marker", tempMarker);
 
   });
 
@@ -74,7 +73,6 @@ $(function() {
       var $listings = $('.listings');
 
       markers.eachLayer(function (locale){
-        // console.log(locale);
         var prop = locale.feature.properties;
 
         var $el = $('<div class="item" />'); 
@@ -105,7 +103,7 @@ $(function() {
   function processForm() {
     var newPlace = {};
 
-    $('input.pure-input-2-3').each(function (index, el){
+    $('input.pure-input-1').each(function (index, el){
       var name = $(el).prop('name');
       var val = $(el).prop('value');
       if (name==='coords') {
@@ -131,9 +129,8 @@ $(function() {
     console.log('tags', tags);
     newPlace["tags"] = tags;
 
-    // $('form').find('input[type = "text"], textarea').val("");
     $('form')[0].reset();
-
+    console.log('new place', newPlace)
     return newPlace;
   };
 
@@ -147,6 +144,7 @@ $(function() {
       data: JSON.stringify(newPlace),
       contentType: 'application/json'
     }).done(function (res){
+      console.log(newPlace);
       console.log('data sent to server');
     })
     
