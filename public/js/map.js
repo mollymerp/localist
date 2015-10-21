@@ -26,11 +26,6 @@ $(function() {
 
   });
 
-  // if (tempMarker !== undefined) {
-  //   tempMarker.on('click', function (e) {
-  //     map.removeLayer(tempMarker);
-  //   });
-  // }
 
   function formatTooltip (layer) {
     var props = layer.feature.properties;
@@ -60,7 +55,8 @@ $(function() {
         var newFeature = {"type":"Feature",
                           "geometry": {"type":"Point", "coordinates": [] }
                         };
-        var markerSym = place.tags[0] === 'restaurant' ? 'restaurant' : 'monument'
+        console.log(place.tags[0])
+        var markerSym = place.tags[0] === 'US Government' ? 'monument' : place.tags[0];
         newFeature.geometry.coordinates = place.coordinates;
         newFeature.properties = {name: place.name, address: place.address, tips: place.tips, tags: place.tags, 'marker-color': "#519CFF", "marker-symbol": markerSym};
         geoJSON.features.push(newFeature);
@@ -75,10 +71,10 @@ $(function() {
       markers.eachLayer(function (locale){
         var prop = locale.feature.properties;
 
-        var $el = $('<div class="item" />'); 
-        var $link = $('<a href="#" class="title" />');
-        var $tips = $('<div class="list-tips"/>');
-        var $p = $('<p class="list-p" />')
+        var $el = $('<div class="item" />'), 
+         $link = $('<a href="#" class="title" />'),
+         $tips = $('<div class="list-tips"/>'),
+         $p = $('<p class="list-p" />');
 
         $listings.append($el);
         $el.append($link)
@@ -119,36 +115,27 @@ $(function() {
 
     var tags = [];
     $('input[type = checkbox]').each(function (index, el){
-      
       // console.log('checked, value', $(el).prop('checked'), $(el).prop('value'))
       if ($(el).prop('checked')){
         tags.push($(el).prop('value').toLowerCase());
-        // $(el).prop('checked') = false;
       }
     })
-    console.log('tags', tags);
     newPlace["tags"] = tags;
 
     $('form')[0].reset();
-    console.log('new place', newPlace)
     return newPlace;
   };
-
 
   $('form').submit(function (e){
     e.preventDefault();
     var newPlace = processForm();
-    $.ajax({
-      url: '/places',
-      type: 'POST',
-      data: JSON.stringify(newPlace),
-      contentType: 'application/json'
-    }).done(function (res){
-      console.log(newPlace);
-      console.log('data sent to server');
-    })
-    
+    // $.ajax({
+    //   url: '/places',
+    //   type: 'POST',
+    //   data: JSON.stringify(newPlace),
+    //   contentType: 'application/json'
+    // }).done(function (res){
+    //   console.log('data sent to server');
+    // })
   });
-
-
 }());
