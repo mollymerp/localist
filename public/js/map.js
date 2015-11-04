@@ -193,6 +193,7 @@ $(function() {
       contentType: 'application/json'
     }).done(function(res) {
       console.log('data sent to server');
+      getPlaces();
     })
   });
 }());
