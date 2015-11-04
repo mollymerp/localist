@@ -1,7 +1,6 @@
 var app;
 $(function() {
   L.mapbox.accessToken = 'pk.eyJ1IjoibWxsb3lkIiwiYSI6Im9nMDN3aW8ifQ.mwiVAv4E-1OeaoR25QZAvw';
-  var geocoder = L.mapbox.geocoder('mapbox.places');
 
   $('#placename').autocomplete({
     minLength: 3,
@@ -35,13 +34,6 @@ $(function() {
       $('input[name="coords"]').val([ui.item.coords[1],ui.item.coords[0]]);
     }
   })
-//   .autocomplete( "instance" )._renderItem = function( ul, item ) {
-//     // Inside of _renderItem you can use any property that exists on each item that we built
-//     // with $.map above */
-//     return $("<li>")
-//         .append("<a>" + item.name + "</a>")
-//         .appendTo(ul);
-// };
 
   var map = L.mapbox.map('dc-map', 'mapbox.emerald', {
     scrollWheelZoom: false,
@@ -196,4 +188,6 @@ $(function() {
       getPlaces();
     })
   });
+
+  
 }());

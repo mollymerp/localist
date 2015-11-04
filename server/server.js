@@ -24,6 +24,7 @@ app.use(express.static(__dirname + '/../public'));
 
 app.post('/places', handler.savePlace);
 app.get('/places', handler.fetchPlaces);
+app.post('/delete/places', handler.deletePlace);
 
 console.log('express listening on 8080');
 app.listen(8080);
