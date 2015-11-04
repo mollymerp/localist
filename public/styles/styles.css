@@ -12,14 +12,14 @@ body {
   margin:0 auto;
   width: 80%;
   text-align: center;
-  padding-top: 50px;
+  padding-top: 10px;
 }
 .container {
   position: relative;
   width: 90%;
   height:550px;
   margin: 0 auto;
-  margin-top:50px;
+  margin-top:15px;
 }
 
 .list-p {

@@ -56,7 +56,7 @@ exports.savePlace = function(req, res, next) {
 var fetchAllPlaces = Q.bind(Place.find, Place);
 
 exports.fetchPlaces = function (req, res, next){
-  console.log('in database');
+  // console.log('in database');
   Place.find({}).exec(function(err, places){
     if (err){
       console.error(err);
