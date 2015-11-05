@@ -16,6 +16,7 @@ $(function() {
           res($.map(data.features, function (place){
             // console.log(place);
             return {
+              // if you're creating your own JSON object, you need to have the keys 'label' and 'value'
               label: place.place_name,
               value: place.text,
               coords: place.center,
@@ -29,8 +30,9 @@ $(function() {
       })
     },
     select: function (event, ui) {
-      console.log(ui);
+      // the select action automatically loads the 'value' key property into the selected element
       $('input[name="address"]').val(ui.item.address);
+      // mapbox takes coordinates in the
       $('input[name="coords"]').val([ui.item.coords[1],ui.item.coords[0]]);
     }
   })

@@ -22,8 +22,12 @@ body {
   margin-top:15px;
 }
 
+.ui-autocomplete {
+  font-size: 10px;
+  width: 20%;
+}
 .list-p {
-  height: 10px;
+  margin: 5px 0;
 }
 .tt-title{
   display:block;
